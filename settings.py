@@ -127,8 +127,13 @@ def settings_loop(screen, screen_width, screen_height, settings: Settings):
                         buf = input_buffer[editing_field.label.lower()]
                         input_buffer[editing_field.label.lower()] = buf[:-1]
                     elif ev.unicode:
-                        buf = input_buffer[editing_field.label.lower()]
-                        input_buffer[editing_field.label.lower()] = buf + ev.unicode
+                        field = editing_field.label.lower()
+                        # Port приймає лише цифри, host — букви, цифри, крапки тощо
+                        if field == "port":
+                            if ev.unicode.isdigit():
+                                input_buffer[field] = input_buffer[field] + ev.unicode
+                        elif ev.unicode.isalnum() or ev.unicode in ".-:":
+                            input_buffer[field] = input_buffer[field] + ev.unicode
                 else:
                     if ev.key == K_DOWN:
                         selected = (selected + 1) % len(items)

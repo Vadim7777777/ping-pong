@@ -108,13 +108,15 @@ while True:
         text_rect = win_text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
         screen.blit(win_text, text_rect)
 
-        text = font_win.render('К - рестарт', True, (255, 215, 0))
+        text = font_win.render('R - рестарт', True, (255, 215, 0))
         text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 120))
         screen.blit(text, text_rect)
 
         display.update()
         keys = key.get_pressed()
         if keys[K_r]:
+            you_winner = None
+            lose_sound_played = False
             client.close()
             settings = start_menu(WIDTH, HEIGHT, screen)
             my_id, game_state, buffer, client = connect_to_server()
