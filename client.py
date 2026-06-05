@@ -64,6 +64,7 @@ WALL_HIT_SOUND = mixer.Sound('sounds/Fire 2.mp3')
 PLATFORM_HIT_SOUND = mixer.Sound('sounds/Fire 4.mp3')
 LOSE_SOUND = mixer.Sound('sounds/Game Over.mp3')
 WALL_HIT_SOUND.set_volume(settings.volume)
+
 PLATFORM_HIT_SOUND.set_volume(settings.volume)
 LOSE_SOUND.set_volume(settings.volume)
 # --- ГРА ---
