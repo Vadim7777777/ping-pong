@@ -127,8 +127,13 @@ def settings_loop(screen, screen_width, screen_height, settings: Settings):
                         buf = input_buffer[editing_field.label.lower()]
                         input_buffer[editing_field.label.lower()] = buf[:-1]
                     elif ev.unicode:
-                        buf = input_buffer[editing_field.label.lower()]
-                        input_buffer[editing_field.label.lower()] = buf + ev.unicode
+                        if current.label.lower() == "port":
+                            if ev.unicode.isdigit():
+                                buf = input_buffer[editing_field.label.lower()]
+                                input_buffer[editing_field.label.lower()] = buf + ev.unicode
+                        else:
+                            buf = input_buffer[editing_field.label.lower()]
+                            input_buffer[editing_field.label.lower()] = buf + ev.unicode
                 else:
                     if ev.key == K_DOWN:
                         selected = (selected + 1) % len(items)

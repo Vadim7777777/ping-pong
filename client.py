@@ -59,7 +59,8 @@ is_start_play_music = False
 lose_sound_played = False
 win_sound_played = False
 mixer.init()
-mixer.music.load('sounds/newbattle.wav')
+mixer.music.load('sounds/newbattle.ogg')
+mixer.music.set_volume(0.1)
 WALL_HIT_SOUND = mixer.Sound('sounds/Fire 2.mp3')
 PLATFORM_HIT_SOUND = mixer.Sound('sounds/Fire 4.mp3')
 LOSE_SOUND = mixer.Sound('sounds/Game Over.mp3')
