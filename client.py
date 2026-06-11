@@ -130,15 +130,16 @@ while True:
         print(game_state)
         screen.blit(BG_IMG, (0, 0))
 
-        ###angle += 0.1
-        ##cat_mirror = transform.flip(cat_img, False, True)
-        ###cat_rotated = transform.rotozoom(cat_img, angle, 2)
+        angle += 0.1
+        #cat_mirror = transform.flip(cat_img, False, True)
+        cat_rotated = transform.rotozoom(cat_img, angle, 2)
         # Центруємо повернуту картинку, бо rotozoom змінює розмір поверхні
-        ###cat_rect = cat_rotated.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+        cat_rect = cat_rotated.get_rect(center=(WIDTH // 2, HEIGHT // 2))
 
-        screen.blit(cat_img, (WIDTH // 2 - 25, HEIGHT // 2 - 25))
-        ##screen.blit(cat_mirror, (WIDTH // 2 - 25, HEIGHT // 2 - 25))
-        ###screen.blit(cat_rotated, cat_rect)
+        #screen.blit(cat_img, (WIDTH // 2 - 25, HEIGHT // 2 - 25))
+        #screen.blit(cat_mirror, (WIDTH // 2 - 25, HEIGHT // 2 - 25))
+        #screen.blit(cat_rotated, (WIDTH // 2 - 25, HEIGHT // 2 - 25))
+        screen.blit(cat_rotated, cat_rect)
 
         screen.blit(PLAYER1_IMG, (20, game_state['paddles']['0']))
         screen.blit(PLAYER2_IMG, (WIDTH - 40, game_state['paddles']['1']))
