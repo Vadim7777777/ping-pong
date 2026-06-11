@@ -53,7 +53,7 @@ BALL_IMG = transform.scale(image.load('images/Ball.png'), (20, 20))
 SCORE_BAR_LEFT = transform.scale(image.load('images/ScoreBar.png'), (350, 60))
 SCORE_BAR_RIGHT = transform.flip(transform.scale(image.load('images/ScoreBar.png'), (350, 60)), True, False)
 ball_motion_img = transform.scale(image.load('images/BallMotion.png'), (50, 35))
-
+cat_img = transform.scale(image.load("images/cat.png"), (50, 50))
 # --- ЗВУКИ ---
 is_start_play_music = False
 lose_sound_played = False
@@ -71,6 +71,7 @@ LOSE_SOUND.set_volume(settings.volume)
 game_over = False
 winner = None
 you_winner = None
+angle = 0
 my_id, game_state, buffer, client = connect_to_server()
 Thread(target=receive, daemon=True).start()
 while True:
@@ -128,6 +129,17 @@ while True:
     if game_state:
         print(game_state)
         screen.blit(BG_IMG, (0, 0))
+
+        ###angle += 0.1
+        ##cat_mirror = transform.flip(cat_img, False, True)
+        ###cat_rotated = transform.rotozoom(cat_img, angle, 2)
+        # Центруємо повернуту картинку, бо rotozoom змінює розмір поверхні
+        ###cat_rect = cat_rotated.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+
+        screen.blit(cat_img, (WIDTH // 2 - 25, HEIGHT // 2 - 25))
+        ##screen.blit(cat_mirror, (WIDTH // 2 - 25, HEIGHT // 2 - 25))
+        ###screen.blit(cat_rotated, cat_rect)
+
         screen.blit(PLAYER1_IMG, (20, game_state['paddles']['0']))
         screen.blit(PLAYER2_IMG, (WIDTH - 40, game_state['paddles']['1']))
         screen.blit(BALL_IMG, (game_state['ball']['x'], game_state['ball']['y']))
