@@ -130,6 +130,7 @@ while True:
         print(game_state)
         screen.blit(BG_IMG, (0, 0))
 
+
         angle += 0.1
         #cat_mirror = transform.flip(cat_img, False, True)
         cat_rotated = transform.rotozoom(cat_img, angle, 2)
