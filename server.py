@@ -80,12 +80,12 @@ class GameServer:
                 self.ball['x'] += self.ball['vx']
                 self.ball['y'] += self.ball['vy']
 
-                if self.ball['y'] <= 60 or self.ball['y'] >= HEIGHT:
+                if self.ball['y'] <= 60 or self.ball['y'] >= HEIGHT - 20:
                     self.ball['vy'] *= -1
                     self.sound_event = "wall_hit"
 
                 if (self.ball['x'] <= 40 and self.paddles[0] <= self.ball['y'] <= self.paddles[0] + 100) or \
-                   (self.ball['x'] >= WIDTH - 40 and self.paddles[1] <= self.ball['y'] <= self.paddles[1] + 100):
+                   (self.ball['x'] >= WIDTH - 60 and self.paddles[1] <= self.ball['y'] <= self.paddles[1] + 100):
                     self.ball['vx'] *= -1
                     self.sound_event = 'platform_hit'
 
