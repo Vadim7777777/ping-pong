@@ -53,7 +53,7 @@ BALL_IMG = transform.scale(image.load('images/Ball.png'), (20, 20))
 SCORE_BAR_LEFT = transform.scale(image.load('images/ScoreBar.png'), (350, 60))
 SCORE_BAR_RIGHT = transform.flip(transform.scale(image.load('images/ScoreBar.png'), (350, 60)), True, False)
 ball_motion_img = transform.scale(image.load('images/BallMotion.png'), (50, 35))
-
+dog_png = transform.scale(image.load('images/img.png'), (300, 300))
 # --- ЗВУКИ ---
 is_start_play_music = False
 lose_sound_played = False
@@ -73,6 +73,7 @@ winner = None
 you_winner = None
 my_id, game_state, buffer, client = connect_to_server()
 Thread(target=receive, daemon=True).start()
+angle = 0
 while True:
     for e in event.get():
         if e.type == QUIT:
@@ -126,6 +127,12 @@ while True:
     if game_state:
         print(game_state)
         screen.blit(BG_IMG, (0, 0))
+        angle += 0.1
+        flip_img = transform.flip(dog_png, False, True)
+        rot_img = transform.rotozoom(flip_img, angle, 1.1)
+        dog_rect = rot_img.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+        screen.blit(rot_img, dog_rect)
+
         screen.blit(PLAYER1_IMG, (20, game_state['paddles']['0']))
         screen.blit(PLAYER2_IMG, (WIDTH - 40, game_state['paddles']['1']))
         screen.blit(BALL_IMG, (game_state['ball']['x'], game_state['ball']['y']))
